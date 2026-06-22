@@ -1,0 +1,11 @@
+name = "skyfall-weather-viz"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+# KV namespace caching immutable SMHI source files.
+# For production, replace `id` with the value output by Terraform
+# (`terraform output kv_namespace_id`). Local `wrangler pages dev` simulates
+# KV regardless of the id.
+[[kv_namespaces]]
+binding = "CACHE"
+id = "REPLACE_WITH_TERRAFORM_OUTPUT"

@@ -1,0 +1,7 @@
+# Copy to terraform.tfvars and fill in. Do NOT commit your real values.
+account_id        = "your-cloudflare-account-id"
+project_name      = "skyfall-weather-viz"
+production_branch = "main"
+
+# Prefer exporting CLOUDFLARE_API_TOKEN in your shell instead of setting this.
+# api_token = "..."

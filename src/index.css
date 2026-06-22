@@ -1,0 +1,187 @@
+/* Fonts: Space Grotesk (display) + Inter (body) via Google Fonts. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --color-night-950: #06080f;
+  --color-night-900: #0a0e1a;
+  --color-night-800: #0f1424;
+  --color-night-700: #161d33;
+  --color-surface: #121829;
+
+  --color-cyan-glow: #6ee7ff;
+  --color-violet-bolt: #a78bfa;
+  --color-magenta-bolt: #f0abfc;
+  --color-amber-alert: #fbbf24;
+
+  --color-ink: #e8edf7;
+  --color-ink-muted: #94a3b8;
+  --color-ink-faint: #64748b;
+
+  --color-hairline: rgba(148, 163, 184, 0.16);
+  --color-glass-bg: rgba(18, 24, 41, 0.55);
+  --color-surface-muted: rgba(255, 255, 255, 0.03);
+  --color-grain-dot: rgba(255, 255, 255, 0.025);
+}
+
+@layer base {
+  :root,
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+
+  [data-theme="light"] {
+    color-scheme: light;
+    --color-ink: #0f172a;
+    --color-ink-muted: #475569;
+    --color-ink-faint: #64748b;
+    --color-hairline: rgba(15, 23, 42, 0.1);
+    --color-glass-bg: rgba(255, 255, 255, 0.72);
+    --color-surface-muted: rgba(15, 23, 42, 0.04);
+    --color-grain-dot: rgba(15, 23, 42, 0.04);
+    --color-cyan-glow: #0891b2;
+    --color-violet-bolt: #7c3aed;
+    --color-magenta-bolt: #c026d3;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100svh;
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background-color: var(--color-night-900);
+    background-image:
+      radial-gradient(
+        1200px 600px at 75% -10%,
+        rgba(110, 231, 255, 0.12),
+        transparent 60%
+      ),
+      radial-gradient(
+        900px 600px at 10% 10%,
+        rgba(167, 139, 250, 0.12),
+        transparent 55%
+      ),
+      radial-gradient(
+        1000px 800px at 50% 120%,
+        rgba(240, 171, 252, 0.08),
+        transparent 60%
+      );
+    background-attachment: fixed;
+    line-height: 1.6;
+    transition:
+      background-color 0.35s ease,
+      color 0.35s ease;
+  }
+
+  [data-theme="light"] body {
+    background-color: #f4f7fb;
+    background-image:
+      radial-gradient(
+        900px 500px at 85% -5%,
+        rgba(8, 145, 178, 0.14),
+        transparent 55%
+      ),
+      radial-gradient(
+        700px 480px at 5% 15%,
+        rgba(124, 58, 237, 0.1),
+        transparent 50%
+      ),
+      radial-gradient(
+        800px 600px at 50% 110%,
+        rgba(192, 38, 211, 0.07),
+        transparent 55%
+      );
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: var(--color-ink);
+  }
+
+  ::selection {
+    background: rgba(110, 231, 255, 0.28);
+    color: #fff;
+  }
+
+  [data-theme="light"] ::selection {
+    background: rgba(8, 145, 178, 0.22);
+    color: #0f172a;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-cyan-glow);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: var(--color-glass-bg);
+    border: 1px solid var(--color-hairline);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .surface-muted {
+    background: var(--color-surface-muted);
+  }
+
+  .border-subtle {
+    border-color: var(--color-hairline);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .grain {
+    background-image: radial-gradient(var(--color-grain-dot) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+
+  .brand-gradient {
+    background-image: linear-gradient(
+      120deg,
+      var(--color-cyan-glow),
+      var(--color-violet-bolt),
+      var(--color-magenta-bolt)
+    );
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

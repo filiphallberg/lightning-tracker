@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Skyfall — cloud and lightning history for any location in Sweden. Weather insights, reimagined."
+    />
+    <meta name="theme-color" content="#0A0E1A" />
+    <title>Skyfall — Cloud &amp; Lightning Atlas</title>
+    <script>
+      (function () {
+        var t = localStorage.getItem("skyfall-theme");
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark";
+        }
+        document.documentElement.dataset.theme = t;
+        document
+          .querySelector('meta[name="theme-color"]')
+          ?.setAttribute("content", t === "light" ? "#F4F7FB" : "#0A0E1A");
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
