@@ -1,4 +1,4 @@
-name = "skyfall-weather-viz"
+name = "lightning-tracker"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 main = ".worker/index.js"
