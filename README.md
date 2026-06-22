@@ -137,37 +137,6 @@ pnpm deploy        # pnpm build && wrangler pages deploy dist
   most recent days may still be sparse for some stations.
 - **Coverage**: data is Sweden-focused (SMHI is the Swedish weather service).
 
-## Demo deployment (free tier)
-
-You already have the right backend shape: **Cloudflare Pages Functions + KV**.
-No separate server is required for a demo.
-
-| Concern | Free-tier approach |
-| -------- | ------------------- |
-| API proxy + SMHI keys | Pages Functions (included with Pages) |
-| Cache raw SMHI files | Workers KV (free tier: 100k reads/day, 1k writes/day) |
-| Yearly lightning | Batched subrequests (45/batch) + response cache in KV |
-| Cold first load | Pre-warm before demo: open Year view for your location once |
-| CPU/time limits | Keep radius ≤ 100 km; use past years not current year |
-
-**Do you need another backend?** No — a lightweight proxy is mandatory (SMHI
-CORS, geocoding, aggregation), and you already have one. Adding e.g. Railway
-or Fly.io would cost money and duplicate what Pages Functions do. Optional
-*free* upgrades if a demo outgrows limits:
-
-1. **Pre-warm script** — run `curl` against `/api/lightning?granularity=year&…`
-   for Stockholm + your demo year before the presentation (fills KV).
-2. **GitHub Actions cron** — weekly job hits popular endpoints to keep KV warm
-   (still $0 on Cloudflare free + GitHub free).
-3. **Static pre-aggregation** — for a fixed demo location/year, commit a JSON
-   snapshot under `public/demo/` and fall back when `?demo=1` (zero SMHI calls
-   during the talk).
-4. **Client-side month fan-out** — if you hit Worker CPU limits, split year
-   into 12 parallel month requests from the browser (each ≤ 31 subrequests).
-
-For a one-off demo on Cloudflare free tier, **(1) pre-warm + response caching**
-is usually enough.
-
 ## Project structure
 
 ```
