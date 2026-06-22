@@ -1,7 +1,10 @@
 name = "skyfall-weather-viz"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = "dist"
+main = ".worker/index.js"
+
+[assets]
+directory = "./dist"
 
 # KV namespace caching immutable SMHI source files.
 # For production, replace `id` with the value output by Terraform
@@ -9,4 +12,4 @@ pages_build_output_dir = "dist"
 # KV regardless of the id.
 [[kv_namespaces]]
 binding = "CACHE"
-id = "REPLACE_WITH_TERRAFORM_OUTPUT"
+id = "20464d940faa45cbb047fe9a811edc87"
